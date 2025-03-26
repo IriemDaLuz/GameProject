@@ -1,0 +1,17 @@
+# Archivos y carpetas innecesarias de Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+
+# Archivos de configuración personal
+*.csproj
+*.sln
+*.unityproj
+
+# Archivos de Unity generados automáticamente
+/Assets/Plugins/*.meta
