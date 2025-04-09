@@ -31,8 +31,4 @@ public class LogicalVolumen : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
 }
