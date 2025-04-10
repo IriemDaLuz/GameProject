@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Menu/MainMenu.unity
     guid: 7d211a1c5418e0d4cbeba33df62956a0
   - enabled: 1
-    path: Assets/Scenes/OptionsMenu.unity
+    path: Assets/Scenes/Menu/OptionsMenu.unity
     guid: dbf8a90d7af1a6340b6213f827bb8248
   - enabled: 1
-    path: Assets/Scenes/PlayMenu.unity
+    path: Assets/Scenes/Menu/PlayMenu.unity
     guid: ec6a8cb99014888498286c75ead4e00c
   - enabled: 1
-    path: Assets/Scenes/HelpScreen.unity
+    path: Assets/Scenes/Menu/HelpScreen.unity
     guid: 844cf7ced9798c2468ab9731ccb4fc9d
   - enabled: 1
-    path: Assets/Scenes/CreditsScreen.unity
+    path: Assets/Scenes/Menu/CreditsScreen.unity
     guid: efba506c94806b54882b7ed14d16a2b4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
