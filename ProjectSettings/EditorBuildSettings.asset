@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/CreditsScreen.unity
     guid: efba506c94806b54882b7ed14d16a2b4
+  - enabled: 1
+    path: Assets/HE_URP_AbandonedHospital/Hespital_EXAMPLE.unity
+    guid: c76c19567bbf5b9458ab9886939993a8
+  - enabled: 1
+    path: Assets/Scenes/GamePlay.unity
+    guid: f28e07d90d7939d48898d98c6ffc41ad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
