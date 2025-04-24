@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-guid: 6d6a33094371f8a4b9d4178951b9e95a
-AssetOrigin:
-  serializedVersion: 1
-  productId: 227561
-  packageName: Horror Atmosphere LITE
-  packageVersion: 1.0
-  assetPath: Assets/Horror Atmosphere LITE/Ambience/Atmosphere And Chaos/Atmosphere_008(
-    SINGLE LOOP).wav
-  uploadId: 513082
+guid: c1ecfdc95e78b01459c298e4f000de83
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8
@@ -19,12 +11,12 @@ AudioImporter:
     compressionFormat: 1
     quality: 1
     conversionMode: 0
-    preloadAudioData: 1
+    preloadAudioData: 0
   platformSettingOverrides: {}
   forceToMono: 0
   normalize: 1
-  loadInBackground: 1
-  ambisonic: 1
+  loadInBackground: 0
+  ambisonic: 0
   3D: 1
   userData: 
   assetBundleName: 
