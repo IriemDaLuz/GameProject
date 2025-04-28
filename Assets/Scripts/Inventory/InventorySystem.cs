@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class InventorySystem : MonoBehaviour
 {
+    public static InventorySystem Instance;
     private Dictionary<InventoryItemDAta, InventoryItem> _itemDictionary;
     public List<InventoryItem> inventory;
 
@@ -10,6 +11,7 @@ public class InventorySystem : MonoBehaviour
     {
         inventory = new List<InventoryItem>();
         _itemDictionary = new Dictionary<InventoryItemDAta, InventoryItem>();   
+        Instance= this;
     }
     
     public void Add(InventoryItemDAta itemDAta){
