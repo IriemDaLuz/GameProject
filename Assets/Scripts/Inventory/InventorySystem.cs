@@ -7,6 +7,9 @@ public class InventorySystem : MonoBehaviour
     private Dictionary<InventoryItemDAta, InventoryItem> _itemDictionary;
     public List<InventoryItem> inventory;
 
+    public delegate void onInventoryChangedEvent();
+
+    public event onInventoryChangedEvent onInventoryChangedEventCallback;
     private void Awake()
     {
         inventory = new List<InventoryItem>();
@@ -18,11 +21,15 @@ public class InventorySystem : MonoBehaviour
         if (_itemDictionary.TryGetValue(itemDAta , out InventoryItem value)){
             Debug.Log("SUMAR STACK EN ITEM");
             value.AddStack();
+
+            onInventoryChangedEventCallback.Invoke();
         } else {
             Debug.Log("AGREGAR UN NUEVO ITEM");
             InventoryItem newItem = new InventoryItem(itemDAta);
             inventory.Add(newItem);
             _itemDictionary.Add(itemDAta, newItem);
+
+            onInventoryChangedEventCallback.Invoke();
         }
     }
 
@@ -35,5 +42,8 @@ public class InventorySystem : MonoBehaviour
                 _itemDictionary.Remove(itemDAta);
             }
         }
+        
+        onInventoryChangedEventCallback.Invoke();
+
     }
 }
