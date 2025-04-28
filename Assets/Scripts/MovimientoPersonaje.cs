@@ -1,91 +1,65 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class MovimientoPersonaje : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movimiento")]
-    [SerializeField] private float velocidadMovimiento = 2f;
-    [SerializeField] private float sensibilidadCamara = 1.5f;
+    public float walkSpeed = 2f; // Velocidad más lenta por estar dolorido
+    public float gravity = -9.81f;
 
-    [Header("Referencias")]
-    [SerializeField] private Transform transformPersonaje;
-    [SerializeField] private Camera camaraPersonaje;
+    [Header("Control")]
+    public Transform playerCamera;
+    public float mouseSensitivity = 1.5f; // Sensibilidad un poco más baja
+    public float cameraPitch = 0f;
+    public float minPitch = -75f;
+    public float maxPitch = 75f;
 
-    private CharacterController characterController;
-    private Vector3 direccionMovimiento;
-    private float rotacionX;
-    private bool interactuandoConUI = false;
+    private CharacterController controller;
+    private Vector3 velocity;
+    private bool isGrounded;
 
-    private void Awake()
+    void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    private void Start()
+    void Update()
     {
-        ManejarCursor();
+        HandleMovement();
+        HandleMouseLook();
     }
 
-    private void Update()
+    void HandleMovement()
     {
-        if (!interactuandoConUI)
+        isGrounded = controller.isGrounded;
+        if (isGrounded && velocity.y < 0)
         {
-            MovimientoDelPersonaje();
-            MovimientoDeCamara();
+            velocity.y = -2f;
         }
 
-        ManejarCursor();
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+
+        controller.Move(move * walkSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
-    private void ManejarCursor()
+    void HandleMouseLook()
     {
-        Cursor.visible = interactuandoConUI;
-        Cursor.lockState = interactuandoConUI ? CursorLockMode.None : CursorLockMode.Locked;
-    }
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-    private void MovimientoDelPersonaje()
-    {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputZ = Input.GetAxis("Vertical");
+        cameraPitch -= mouseY;
+        cameraPitch = Mathf.Clamp(cameraPitch, minPitch, maxPitch);
 
-        direccionMovimiento = (transformPersonaje.right * inputX + transformPersonaje.forward * inputZ).normalized;
-        characterController.SimpleMove(direccionMovimiento * velocidadMovimiento);
-    }
-
-    private void MovimientoDeCamara()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * sensibilidadCamara;
-        float mouseY = Input.GetAxis("Mouse Y") * sensibilidadCamara;
-
-        rotacionX -= mouseY;
-        rotacionX = Mathf.Clamp(rotacionX, -80f, 80f);
-
-        camaraPersonaje.transform.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
-        transformPersonaje.Rotate(Vector3.up * mouseX);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("UIInteractiva"))
-            interactuandoConUI = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("UIInteractiva"))
-            interactuandoConUI = false;
-    }
-
-    private void OnGUI()
-    {
-        if (!interactuandoConUI)
-        {
-            float crosshairSize = 6f;
-            GUI.color = new Color(1, 0, 0, 0.5f);
-            GUI.DrawTexture(
-                new Rect(Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize),
-                Texture2D.whiteTexture
-            );
-        }
+        playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
     }
 }
