@@ -1,51 +1,267 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class WakeUpSystem : MonoBehaviour
+public class IntroWakeUpSystem : MonoBehaviour
 {
-    public Transform playerCamera; // Asigna aquí la MainCamera
-    public float wakeUpDuration = 3f;
-    public GameObject playerController; // El objeto que controlará el movimiento después
+    [Header("Referencias")]
+    public Transform camaraJugador;
+    public GameObject controladorJugador;
+    public AudioSource fuenteAudio;
+    public AudioClip clipVozSatan;
+    public CanvasGroup canvasFade;
+    public GameObject canvasUIPrincipal;
+    public GameObject canvasUIExtra;
+    public MonoBehaviour scriptMovimientoJugador;
 
-    private Vector3 startCamPosition;
-    private Quaternion startCamRotation;
-    private Vector3 endCamPosition;
-    private Quaternion endCamRotation;
+    [Header("Texto y Subtítulos")]
+    public TMP_Text textoIndicacion;
+    public TMP_Text textoSubtitulos;
+
+    [Header("Subtítulos")]
+    public float[] tiemposSubtitulos;
+    public string[] lineasSubtitulos;
+
+    private Vector3 posicionInicialCamara;
+    private Quaternion rotacionInicialCamara;
+    private bool listoParaDespertar = false;
+    private int contadorPresionar = 0;
+    private int presionesNecesarias = 3;
 
     void Start()
     {
-        // Guardamos la posición y rotación inicial
-        startCamPosition = playerCamera.localPosition;
-        startCamRotation = playerCamera.localRotation;
+        posicionInicialCamara = camaraJugador.localPosition;
+        rotacionInicialCamara = camaraJugador.localRotation;
 
-        // Definimos hacia dónde queremos movernos (levantar)
-        endCamPosition = startCamPosition + new Vector3(0f, 1.2f, 0f); // Se levanta
-        endCamRotation = Quaternion.Euler(0f, 0f, 0f);
+        textoIndicacion.text = "";
+        textoSubtitulos.text = "";
 
-        // Iniciamos la secuencia
-        StartCoroutine(WakeUpSequence());
+        if (canvasUIPrincipal != null)
+            canvasUIPrincipal.SetActive(false);
+
+        if (canvasUIExtra != null)
+            canvasUIExtra.SetActive(false);
+
+        if (scriptMovimientoJugador != null)
+            scriptMovimientoJugador.enabled = false;
+
+        StartCoroutine(SecuenciaIntro());
     }
 
-    IEnumerator WakeUpSequence()
+    IEnumerator SecuenciaIntro()
     {
-        float elapsed = 0f;
+        yield return StartCoroutine(MirarIzquierda());
+        yield return StartCoroutine(Parpadeo());
+        yield return StartCoroutine(MirarDerecha());
+        yield return StartCoroutine(Parpadeo());
 
-        while (elapsed < wakeUpDuration)
+        camaraJugador.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        canvasFade.alpha = 0f;
+
+        ReproducirVoz();
+        StartCoroutine(SecuenciaSubtitulos());
+
+        yield return new WaitForSeconds(clipVozSatan.length + 1f);
+
+        ChapterTitleManager.Instance.ShowChapter("Capítulo 1", "El Despertar");
+        yield return new WaitForSeconds(6f);
+
+        if (textoIndicacion != null)
+        {
+            textoIndicacion.gameObject.SetActive(true);
+            textoIndicacion.text = "Presiona [E] para despertar";
+        }
+
+        if (canvasUIPrincipal != null)
+            canvasUIPrincipal.SetActive(true);
+
+        if (canvasUIExtra != null)
+            canvasUIExtra.SetActive(true);
+
+        listoParaDespertar = true;
+    }
+
+    void Update()
+    {
+        if (listoParaDespertar && Input.GetKeyDown(KeyCode.E))
+        {
+            contadorPresionar++;
+            if (contadorPresionar >= presionesNecesarias)
+            {
+                StartCoroutine(SecuenciaDespertar());
+            }
+            else
+            {
+                textoIndicacion.text = $"Presiona [E] {presionesNecesarias - contadorPresionar} vez más...";
+            }
+        }
+    }
+
+    void ReproducirVoz()
+    {
+        if (!fuenteAudio.isPlaying)
+        {
+            fuenteAudio.clip = clipVozSatan;
+            fuenteAudio.Play();
+        }
+    }
+
+    IEnumerator Parpadeo()
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 4f;
+            canvasFade.alpha = Mathf.Lerp(0f, 1f, t);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.2f);
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 4f;
+            canvasFade.alpha = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+    }
+
+    IEnumerator ParpadeoFinal()
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 4f;
+            canvasFade.alpha = Mathf.Lerp(0f, 1f, t);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.3f);
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 4f;
+            canvasFade.alpha = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+    }
+
+    IEnumerator MirarIzquierda()
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 0.5f;
+            camaraJugador.localRotation = Quaternion.Slerp(rotacionInicialCamara, Quaternion.Euler(0f, -30f, 0f), t);
+            yield return null;
+        }
+    }
+
+    IEnumerator MirarDerecha()
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 0.5f;
+            camaraJugador.localRotation = Quaternion.Slerp(Quaternion.Euler(0f, -30f, 0f), Quaternion.Euler(0f, 30f, 0f), t);
+            yield return null;
+        }
+    }
+
+    IEnumerator SecuenciaSubtitulos()
+    {
+        int index = 0;
+        while (index < lineasSubtitulos.Length)
+        {
+            yield return new WaitForSeconds(tiemposSubtitulos[index]);
+            textoSubtitulos.text = lineasSubtitulos[index];
+            index++;
+        }
+        yield return new WaitForSeconds(2f);
+        textoSubtitulos.text = "";
+    }
+
+    IEnumerator SecuenciaDespertar()
+    {
+        textoIndicacion.text = "";
+        yield return StartCoroutine(ParpadeoFinal());
+
+        float elapsed = 0f;
+        float duracion = 3f;
+
+        Vector3 posInicial = camaraJugador.localPosition;
+        Quaternion rotInicial = camaraJugador.localRotation;
+
+        Vector3 posMedia = posInicial + new Vector3(-0.2f, 0f, 0.2f);
+        Quaternion rotMedia = Quaternion.Euler(20f, -30f, 0f);
+
+        Vector3 posFinal = posInicial + new Vector3(0f, 1.2f, 0f);
+        Quaternion rotFinal = Quaternion.Euler(0f, 0f, 0f);
+
+        while (elapsed < duracion / 2)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / wakeUpDuration;
+            float t = elapsed / (duracion / 2);
 
-            playerCamera.localPosition = Vector3.Lerp(startCamPosition, endCamPosition, t);
-            playerCamera.localRotation = Quaternion.Slerp(startCamRotation, endCamRotation, t);
+            camaraJugador.localPosition = Vector3.Lerp(posInicial, posMedia, t);
+            camaraJugador.localRotation = Quaternion.Slerp(rotInicial, rotMedia, t);
 
             yield return null;
         }
 
-        EnablePlayerMovement();
+        elapsed = 0f;
+        while (elapsed < duracion / 2)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / (duracion / 2);
+
+            camaraJugador.localPosition = Vector3.Lerp(posMedia, posFinal, t);
+            camaraJugador.localRotation = Quaternion.Slerp(rotMedia, rotFinal, t);
+
+            yield return null;
+        }
+
+        yield return StartCoroutine(BajarDeCamilla());
+
+        if (scriptMovimientoJugador != null)
+            scriptMovimientoJugador.enabled = true;
+
+        StartCoroutine(MareoDespuesDespertar());
+        gameObject.SetActive(false);
     }
 
-    void EnablePlayerMovement()
+    IEnumerator BajarDeCamilla()
     {
-        playerController.SetActive(true); // Activamos el movimiento normal
+        float elapsed = 0f;
+        float duracion = 1.2f;
+
+        Vector3 posInicio = camaraJugador.localPosition;
+        Vector3 posDestino = posInicio + new Vector3(0.4f, -1.0f, 0f);
+
+        while (elapsed < duracion)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duracion;
+
+            camaraJugador.localPosition = Vector3.Lerp(posInicio, posDestino, t);
+            yield return null;
+        }
+    }
+
+    IEnumerator MareoDespuesDespertar()
+    {
+        float timer = 0f;
+        float duracion = 5f;
+
+        while (timer < duracion)
+        {
+            timer += Time.deltaTime;
+            float swayX = Mathf.Sin(timer * 1.5f) * 2f;
+            float swayY = Mathf.Cos(timer * 1.2f) * 1.5f;
+
+            camaraJugador.localRotation = Quaternion.Euler(swayY, swayX, 0f);
+            yield return null;
+        }
+
+        camaraJugador.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }
 }
