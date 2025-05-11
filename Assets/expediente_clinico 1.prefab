@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7916029569834614174
+--- !u!1 &8844819040652643320
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5266675341176386678}
-  - component: {fileID: 3196026568547110691}
-  - component: {fileID: 7526786948936502949}
-  - component: {fileID: 1099874718563570662}
-  m_Layer: 0
-  m_Name: expediente_clinico
+  - component: {fileID: 3680543949559554685}
+  - component: {fileID: 5181613100210565927}
+  - component: {fileID: 7343641482179738575}
+  - component: {fileID: 1009191161608524399}
+  - component: {fileID: 1241031821138259254}
+  m_Layer: 7
+  m_Name: expediente_clinico 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5266675341176386678
+--- !u!4 &3680543949559554685
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7916029569834614174}
+  m_GameObject: {fileID: 8844819040652643320}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.95480394, z: -0, w: 0.29723653}
   m_LocalPosition: {x: 13.825, y: 10.052, z: 8.85}
-  m_LocalScale: {x: 0.04, y: 0.3, z: 0.053333335}
+  m_LocalScale: {x: 0.040000007, y: 0.3, z: 0.053333342}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -145.417, z: 0}
---- !u!33 &3196026568547110691
+--- !u!33 &5181613100210565927
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7916029569834614174}
+  m_GameObject: {fileID: 8844819040652643320}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7526786948936502949
+--- !u!23 &7343641482179738575
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7916029569834614174}
+  m_GameObject: {fileID: 8844819040652643320}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1099874718563570662
+--- !u!64 &1009191161608524399
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7916029569834614174}
+  m_GameObject: {fileID: 8844819040652643320}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -109,3 +110,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1241031821138259254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844819040652643320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e2a33b051efc04d9acf389338fb5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreObjeto: "Expediente Cl\xEDnico"
+  descripcionObjeto: "Nombre: Camila Herrera\nEdad: 32 a\xF1os\nEstado: Embarazo
+    a t\xE9rmino \u2013 39 semanas\nIngreso: Urgencias obst\xE9tricas por p\xE9rdida
+    de l\xEDquido amni\xF3tico y contracciones desorganizadas.\n\nAntecedentes m\xE9dicos:\n\nTrastorno
+    de ansiedad generalizada (no medicado durante el embarazo).\n\nEpisodios disociativos
+    durante el tercer trimestre.\n\nInforme psicol\xF3gico menciona \u201Ctemor persistente
+    a morir durante el parto\u201D.\n\nObservaciones m\xE9dicas:\n\nSe indica paciente
+    emocionalmente inestable.\n\nRechaza contacto f\xEDsico con el personal.\n\nManifiesta
+    frases como \u201Cno estoy sola\u201D y \u201Cel beb\xE9 no est\xE1 bien\u201D.\n\nProcedimiento:\n\nIntento
+    inicial de parto vaginal. Se decide ces\xE1rea urgente tras ca\xEDda del ritmo
+    card\xEDaco fetal.\n\nDurante la cirug\xEDa, la paciente entra en paro cardiorrespiratorio.\n\nResultado
+    final:\nCamila fallece 8 minutos despu\xE9s del inicio del procedimiento.\n\nAnotaci\xF3n
+    manuscrita al margen:\n\u201CSe neg\xF3 desde el principio. Lo present\xEDa.\u201D"
+  modeloParaInspeccionar: {fileID: 7916029569834614174, guid: 2f18024be7353223eb2c45e7a8a18ce0, type: 3}

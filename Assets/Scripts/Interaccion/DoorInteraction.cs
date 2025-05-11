@@ -4,32 +4,39 @@ public class DoorInteraction : MonoBehaviour, IInteractable
 {
     private bool isOpen = false;
     private Quaternion initialRotation;
-    private Quaternion openRotation;
+    private Quaternion targetRotation;
     public float openAngle = 90f;
     public float openSpeed = 2f;
 
     void Start()
     {
         initialRotation = transform.rotation;
-        openRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, openAngle, 0));
+        targetRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, openAngle, 0));
     }
 
     public void Interact()
     {
         if (!isOpen)
         {
-            isOpen = true;
-            StartCoroutine(OpenDoor());
+            StartCoroutine(RotateDoor(targetRotation));
         }
+        else
+        {
+            StartCoroutine(RotateDoor(initialRotation));
+        }
+
+        isOpen = !isOpen;
     }
 
-    private System.Collections.IEnumerator OpenDoor()
+    private System.Collections.IEnumerator RotateDoor(Quaternion endRotation)
     {
+        Quaternion startRotation = transform.rotation;
         float t = 0f;
+
         while (t < 1f)
         {
             t += Time.deltaTime * openSpeed;
-            transform.rotation = Quaternion.Slerp(initialRotation, openRotation, t);
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
             yield return null;
         }
     }
