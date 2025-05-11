@@ -1,44 +1,39 @@
 using UnityEngine;
 
+public interface IInteractable
+{
+    void Interact();
+}
+
+
 public class InteractionDetector : MonoBehaviour
 {
-    [Header("Información del objeto detectado")]
-    public GameObject currentObject;     
-    public string currentTag = "";        
-    public string currentName = "";     
+    public Transform InteractorSource;
+    public float InteractRange = 3f;
+    public GameObject InteractionUI; 
+    private IInteractable currentInteractable;
 
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Interactuable"))
+        Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
+
+        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
         {
-            currentObject = other.gameObject;
-            currentTag = other.tag;
-            currentName = other.name;
+            if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+            {
+                currentInteractable = interactObj;
+                InteractionUI.SetActive(true); 
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    interactObj.Interact();
+                }
+
+                return; 
+            }
         }
-    }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == currentObject)
-        {
-            currentObject = null;
-            currentTag = "";
-            currentName = "";
-        }
-    }
-
-    public GameObject GetDetectedObject()
-    {
-        return currentObject;
-    }
-
-    public string GetDetectedTag()
-    {
-        return currentTag;
-    }
-
-    public string GetDetectedName()
-    {
-        return currentName;
+        currentInteractable = null;
+        InteractionUI.SetActive(false);
     }
 }

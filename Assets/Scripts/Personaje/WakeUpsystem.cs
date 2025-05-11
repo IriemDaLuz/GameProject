@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class IntroWakeUpSystem : MonoBehaviour
+public class WakeUpsystem : MonoBehaviour
 {
     [Header("Referencias")]
     public Transform camaraJugador;
@@ -18,6 +18,9 @@ public class IntroWakeUpSystem : MonoBehaviour
     [Header("Texto y Subtítulos")]
     public TMP_Text textoIndicacion;
     public TMP_Text textoSubtitulos;
+
+    [Header("UI de Salto")]
+    public TMP_Text textoSaltarIntro;
 
     [Header("Subtítulos")]
     public float[] tiemposSubtitulos;
@@ -46,7 +49,34 @@ public class IntroWakeUpSystem : MonoBehaviour
         if (scriptMovimientoJugador != null)
             scriptMovimientoJugador.enabled = false;
 
+        if (textoSaltarIntro != null)
+        {
+            textoSaltarIntro.gameObject.SetActive(true);
+            textoSaltarIntro.text = "Presiona [Espacio] para saltar introducción";
+        }
+
         StartCoroutine(SecuenciaIntro());
+    }
+
+    void Update()
+    {
+        if (listoParaDespertar && Input.GetKeyDown(KeyCode.E))
+        {
+            contadorPresionar++;
+            if (contadorPresionar >= presionesNecesarias)
+            {
+                StartCoroutine(SecuenciaDespertar());
+            }
+            else
+            {
+                textoIndicacion.text = $"Presiona [E] {presionesNecesarias - contadorPresionar} vez más...";
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SkipIntro();
+        }
     }
 
     IEnumerator SecuenciaIntro()
@@ -80,22 +110,6 @@ public class IntroWakeUpSystem : MonoBehaviour
             canvasUIExtra.SetActive(true);
 
         listoParaDespertar = true;
-    }
-
-    void Update()
-    {
-        if (listoParaDespertar && Input.GetKeyDown(KeyCode.E))
-        {
-            contadorPresionar++;
-            if (contadorPresionar >= presionesNecesarias)
-            {
-                StartCoroutine(SecuenciaDespertar());
-            }
-            else
-            {
-                textoIndicacion.text = $"Presiona [E] {presionesNecesarias - contadorPresionar} vez más...";
-            }
-        }
     }
 
     void ReproducirVoz()
@@ -183,6 +197,10 @@ public class IntroWakeUpSystem : MonoBehaviour
     IEnumerator SecuenciaDespertar()
     {
         textoIndicacion.text = "";
+
+        if (textoSaltarIntro != null)
+            textoSaltarIntro.gameObject.SetActive(false);
+
         yield return StartCoroutine(ParpadeoFinal());
 
         float elapsed = 0f;
@@ -263,5 +281,39 @@ public class IntroWakeUpSystem : MonoBehaviour
         }
 
         camaraJugador.localRotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+
+    void SkipIntro()
+    {
+        StopAllCoroutines();
+
+        camaraJugador.localPosition = new Vector3(0f, 1.2f, 0f);
+        camaraJugador.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
+        if (fuenteAudio != null && fuenteAudio.isPlaying)
+            fuenteAudio.Stop();
+
+        if (textoIndicacion != null)
+            textoIndicacion.text = "";
+
+        if (textoSubtitulos != null)
+            textoSubtitulos.text = "";
+
+        if (textoSaltarIntro != null)
+            textoSaltarIntro.gameObject.SetActive(false);
+
+        if (canvasUIPrincipal != null)
+            canvasUIPrincipal.SetActive(true);
+
+        if (canvasUIExtra != null)
+            canvasUIExtra.SetActive(true);
+
+        if (scriptMovimientoJugador != null)
+            scriptMovimientoJugador.enabled = true;
+
+        if (canvasFade != null)
+            canvasFade.alpha = 0f;
+
+        gameObject.SetActive(false);
     }
 }

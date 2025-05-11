@@ -1,25 +1,36 @@
 using UnityEngine;
 
-public class DoorInteraction : MonoBehaviour
+public class DoorInteraction : MonoBehaviour, IInteractable
 {
     private bool isOpen = false;
     private Quaternion initialRotation;
+    private Quaternion openRotation;
     public float openAngle = 90f;
-    public float speed = 2f;
+    public float openSpeed = 2f;
 
     void Start()
     {
         initialRotation = transform.rotation;
+        openRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, openAngle, 0));
     }
 
-    public void ToggleDoor()
+    public void Interact()
     {
-        isOpen = !isOpen;
+        if (!isOpen)
+        {
+            isOpen = true;
+            StartCoroutine(OpenDoor());
+        }
     }
 
-    void Update()
+    private System.Collections.IEnumerator OpenDoor()
     {
-        Quaternion targetRotation = isOpen ? Quaternion.Euler(0, openAngle, 0) * initialRotation : initialRotation;
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * speed);
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * openSpeed;
+            transform.rotation = Quaternion.Slerp(initialRotation, openRotation, t);
+            yield return null;
+        }
     }
 }
