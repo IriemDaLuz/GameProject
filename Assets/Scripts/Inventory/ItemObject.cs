@@ -3,16 +3,38 @@ using UnityEngine;
 public class ItemObject : MonoBehaviour
 {
     public InventoryItemDAta itemDAta;
+    private bool playerInRange = false;
 
-    public void onHandledPickUp(){
-        InventorySystem.Instance.Add(itemDAta);
-        Destroy(gameObject);
+    private void Update()
+    {
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            Pickup();
+        }
     }
 
-    private void OggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")){
-            onHandledPickUp();
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+            PickupUIManager.Instance.ShowText();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            PickupUIManager.Instance.HideText();
+        }
+    }
+
+    public void Pickup()
+    {
+        InventorySystem.Instance.Add(itemDAta);
+        PickupUIManager.Instance.HideText();
+        Destroy(gameObject);
     }
 }
