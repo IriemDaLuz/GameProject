@@ -29,14 +29,11 @@ public class ChapterTitleManager : MonoBehaviour
             return;
         }
 
-        // ✅ No activamos canvasGroup ni textos aún. Se activan solo en ShowChapter()
         canvasGroup.alpha = 0f;
 
-        // Desactiva canvas visual completo al inicio
         if (canvasGroup != null)
             canvasGroup.gameObject.SetActive(false);
 
-        // Desactiva UI del juego al inicio
         foreach (GameObject canvas in canvasesDeJuego)
         {
             if (canvas != null)
@@ -48,11 +45,10 @@ public class ChapterTitleManager : MonoBehaviour
     {
         if (!gameObject.activeInHierarchy)
         {
-            Debug.LogError("❌ ChapterTitleManager está desactivado. ¡No se puede iniciar la secuencia!");
+            Debug.LogError(" ChapterTitleManager está desactivado. ");
             return;
         }
 
-        // Activamos todo para mostrar el título
         if (canvasGroup != null)
             canvasGroup.gameObject.SetActive(true);
 
@@ -75,8 +71,7 @@ public class ChapterTitleManager : MonoBehaviour
     {
         float t = 0f;
         canvasGroup.alpha = 0f;
-
-        // Fade in
+        
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
@@ -86,7 +81,6 @@ public class ChapterTitleManager : MonoBehaviour
 
         yield return new WaitForSeconds(visibleDuration);
 
-        // Fade out
         t = 0f;
         while (t < fadeDuration)
         {
@@ -95,18 +89,15 @@ public class ChapterTitleManager : MonoBehaviour
             yield return null;
         }
 
-        // Desactivar visual completo del capítulo
         if (canvasGroup != null)
             canvasGroup.gameObject.SetActive(false);
 
-        // Desactivar textos
         if (chapterNumberText != null)
             chapterNumberText.gameObject.SetActive(false);
 
         if (chapterNameText != null)
             chapterNameText.gameObject.SetActive(false);
 
-        // Activar UI del juego al final
         foreach (GameObject canvas in canvasesDeJuego)
         {
             if (canvas != null)

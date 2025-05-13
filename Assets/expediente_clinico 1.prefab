@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.95480394, z: -0, w: 0.29723653}
   m_LocalPosition: {x: 13.825, y: 10.052, z: 8.85}
   m_LocalScale: {x: 0.040000007, y: 0.3, z: 0.053333342}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -145.417, z: 0}
@@ -123,16 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombreObjeto: "Expediente Cl\xEDnico"
-  descripcionObjeto: "Nombre: Camila Herrera\nEdad: 32 a\xF1os\nEstado: Embarazo
-    a t\xE9rmino \u2013 39 semanas\nIngreso: Urgencias obst\xE9tricas por p\xE9rdida
-    de l\xEDquido amni\xF3tico y contracciones desorganizadas.\n\nAntecedentes m\xE9dicos:\n\nTrastorno
-    de ansiedad generalizada (no medicado durante el embarazo).\n\nEpisodios disociativos
-    durante el tercer trimestre.\n\nInforme psicol\xF3gico menciona \u201Ctemor persistente
-    a morir durante el parto\u201D.\n\nObservaciones m\xE9dicas:\n\nSe indica paciente
-    emocionalmente inestable.\n\nRechaza contacto f\xEDsico con el personal.\n\nManifiesta
-    frases como \u201Cno estoy sola\u201D y \u201Cel beb\xE9 no est\xE1 bien\u201D.\n\nProcedimiento:\n\nIntento
-    inicial de parto vaginal. Se decide ces\xE1rea urgente tras ca\xEDda del ritmo
-    card\xEDaco fetal.\n\nDurante la cirug\xEDa, la paciente entra en paro cardiorrespiratorio.\n\nResultado
-    final:\nCamila fallece 8 minutos despu\xE9s del inicio del procedimiento.\n\nAnotaci\xF3n
-    manuscrita al margen:\n\u201CSe neg\xF3 desde el principio. Lo present\xEDa.\u201D"
-  modeloParaInspeccionar: {fileID: 7916029569834614174, guid: 2f18024be7353223eb2c45e7a8a18ce0, type: 3}
+  descripcion: 
+  textoLecturaCompleta: 
+  prefabModelo: {fileID: 0}

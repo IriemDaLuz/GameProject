@@ -5,10 +5,8 @@ using System.Collections.Generic;
 
 public class SistemaInspeccion : MonoBehaviour
 {
-    [Header("Cámara")]
+    [Header("Cámara y distancia")]
     public Camera camaraInspeccion;
-
-    [Header("Opciones")]
     public float distancia = 2f;
     public LayerMask capaObjetos;
 
@@ -18,7 +16,6 @@ public class SistemaInspeccion : MonoBehaviour
     [Header("UI de Inspección")]
     public GameObject panelTextoUI;
     public GameObject canvasInspeccion;
-    public Transform puntoVisual;
     public TMP_Text textoNombre;
     public TMP_Text textoDescripcion;
 
@@ -27,6 +24,14 @@ public class SistemaInspeccion : MonoBehaviour
     public TMP_Text textoLectura;
     public Button botonAnterior;
     public Button botonSiguiente;
+
+    [Header("Visualización del objeto")]
+    public Transform puntoVisual;
+    public Light luzInspeccion;
+
+    [Header("Control del jugador")]
+    public MonoBehaviour scriptMovimientoJugador;
+    public MonoBehaviour scriptCamaraJugador;
 
     private ObjetoInspeccionable objetoActual;
     private GameObject modeloInstanciado;
@@ -41,14 +46,12 @@ public class SistemaInspeccion : MonoBehaviour
         if (inspeccionando || camaraInspeccion == null) return;
 
         Ray ray = new Ray(camaraInspeccion.transform.position, camaraInspeccion.transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, distancia, capaObjetos))
+        if (Physics.Raycast(ray, out RaycastHit hit, distancia, capaObjetos))
         {
             objetoActual = hit.collider.GetComponent<ObjetoInspeccionable>();
             if (objetoActual != null)
             {
-                if (panelTextoUI != null && !panelTextoUI.activeSelf)
+                if (!panelTextoUI.activeSelf)
                     panelTextoUI.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
@@ -59,7 +62,7 @@ public class SistemaInspeccion : MonoBehaviour
         }
 
         objetoActual = null;
-        if (panelTextoUI != null && panelTextoUI.activeSelf)
+        if (panelTextoUI.activeSelf)
             panelTextoUI.SetActive(false);
     }
 
@@ -81,11 +84,34 @@ public class SistemaInspeccion : MonoBehaviour
         if (textoDescripcion != null)
             textoDescripcion.text = objetoActual.descripcion;
 
-        if (objetoActual.prefabModelo != null && puntoVisual != null)
-        {
-            modeloInstanciado = Instantiate(objetoActual.prefabModelo, puntoVisual.position, Quaternion.identity, puntoVisual);
-            modeloInstanciado.AddComponent<RotadorDeObjeto>();
-        }
+        if (luzInspeccion != null)
+            luzInspeccion.enabled = true;
+
+       if (objetoActual.prefabModelo != null && puntoVisual != null)
+{
+    modeloInstanciado = Instantiate(objetoActual.prefabModelo, puntoVisual.position, Quaternion.identity, puntoVisual);
+    Debug.Log("📦 Modelo instanciado: " + modeloInstanciado.name);
+
+    modeloInstanciado.AddComponent<RotadorDeObjeto>();
+    modeloInstanciado.transform.localPosition = Vector3.zero;
+    modeloInstanciado.transform.localRotation = Quaternion.identity;
+
+    Renderer rend = modeloInstanciado.GetComponentInChildren<Renderer>();
+    if (rend != null)
+    {
+        Vector3 size = rend.bounds.size;
+        float maxDimension = Mathf.Max(size.x, size.y, size.z);
+        float scaleFactor = 0.5f / maxDimension;
+        modeloInstanciado.transform.localScale = Vector3.one * scaleFactor;
+        Debug.Log($"✅ Escala aplicada: {modeloInstanciado.transform.localScale} basada en {rend.name}");
+    }
+    else
+    {
+        Debug.LogWarning("⚠️ El modelo instanciado no tiene Renderer. Usando escala por defecto.");
+        modeloInstanciado.transform.localScale = Vector3.one * 0.3f;
+    }
+}
+
 
         PausarJuego(true);
     }
@@ -100,10 +126,18 @@ public class SistemaInspeccion : MonoBehaviour
 
         paginas.Clear();
         string desc = objetoActual.textoLecturaCompleta;
-        for (int i = 0; i < desc.Length; i += caracteresPorPagina)
+
+        if (string.IsNullOrWhiteSpace(desc))
         {
-            int length = Mathf.Min(caracteresPorPagina, desc.Length - i);
-            paginas.Add(desc.Substring(i, length));
+            paginas.Add("");
+        }
+        else
+        {
+            for (int i = 0; i < desc.Length; i += caracteresPorPagina)
+            {
+                int length = Mathf.Min(caracteresPorPagina, desc.Length - i);
+                paginas.Add(desc.Substring(i, length));
+            }
         }
 
         paginaActual = 0;
@@ -119,7 +153,17 @@ public class SistemaInspeccion : MonoBehaviour
 
     private void ActualizarPagina()
     {
+        if (paginas == null || paginas.Count == 0)
+        {
+            textoLectura.text = "";
+            botonAnterior.interactable = false;
+            botonSiguiente.interactable = false;
+            return;
+        }
+
+        paginaActual = Mathf.Clamp(paginaActual, 0, paginas.Count - 1);
         textoLectura.text = paginas[paginaActual];
+
         botonAnterior.interactable = paginaActual > 0;
         botonSiguiente.interactable = paginaActual < paginas.Count - 1;
     }
@@ -143,6 +187,9 @@ public class SistemaInspeccion : MonoBehaviour
         if (modeloInstanciado != null)
             Destroy(modeloInstanciado);
 
+        if (luzInspeccion != null)
+            luzInspeccion.enabled = false;
+
         PausarJuego(false);
     }
 
@@ -150,15 +197,27 @@ public class SistemaInspeccion : MonoBehaviour
     {
         if (pausar)
         {
+            Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            Time.timeScale = 0f;
+
+            if (scriptMovimientoJugador != null)
+                scriptMovimientoJugador.enabled = false;
+
+            if (scriptCamaraJugador != null)
+                scriptCamaraJugador.enabled = false;
         }
         else
         {
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            Time.timeScale = 1f;
+
+            if (scriptMovimientoJugador != null)
+                scriptMovimientoJugador.enabled = true;
+
+            if (scriptCamaraJugador != null)
+                scriptCamaraJugador.enabled = true;
         }
     }
 }
