@@ -29,8 +29,7 @@ public class WakeUpsystem : MonoBehaviour
     private Vector3 posicionInicialCamara;
     private Quaternion rotacionInicialCamara;
     private bool listoParaDespertar = false;
-    private int contadorPresionar = 0;
-    private int presionesNecesarias = 3;
+    private bool haDespertado = false;
 
     void Start()
     {
@@ -60,20 +59,13 @@ public class WakeUpsystem : MonoBehaviour
 
     void Update()
     {
-        if (listoParaDespertar && Input.GetKeyDown(KeyCode.E))
+        if (listoParaDespertar && !haDespertado && Input.GetKeyDown(KeyCode.E))
         {
-            contadorPresionar++;
-            if (contadorPresionar >= presionesNecesarias)
-            {
-                StartCoroutine(SecuenciaDespertar());
-            }
-            else
-            {
-                textoIndicacion.text = $"Presiona [E] {presionesNecesarias - contadorPresionar} vez más...";
-            }
+            haDespertado = true;
+            StartCoroutine(SecuenciaDespertar());
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!haDespertado && Input.GetKeyDown(KeyCode.Space))
         {
             SkipIntro();
         }
@@ -94,20 +86,18 @@ public class WakeUpsystem : MonoBehaviour
 
         yield return new WaitForSeconds(clipVozSatan.length + 1f);
 
-        ChapterTitleManager.Instance.ShowChapter("Capítulo 1", "El Despertar");
+        if (ChapterTitleManager.Instance != null)
+        {
+            ChapterTitleManager.Instance.ShowChapter("Capítulo 1", "El Despertar");
+        }
+
         yield return new WaitForSeconds(6f);
 
         if (textoIndicacion != null)
         {
             textoIndicacion.gameObject.SetActive(true);
-            textoIndicacion.text = "Presiona [E] para despertar";
+            textoIndicacion.text = "Presiona [E] para levantarte";
         }
-
-        if (canvasUIPrincipal != null)
-            canvasUIPrincipal.SetActive(true);
-
-        if (canvasUIExtra != null)
-            canvasUIExtra.SetActive(true);
 
         listoParaDespertar = true;
     }
@@ -240,6 +230,12 @@ public class WakeUpsystem : MonoBehaviour
 
         yield return StartCoroutine(BajarDeCamilla());
 
+        if (canvasUIPrincipal != null)
+            canvasUIPrincipal.SetActive(true);
+
+        if (canvasUIExtra != null)
+            canvasUIExtra.SetActive(true);
+
         if (scriptMovimientoJugador != null)
             scriptMovimientoJugador.enabled = true;
 
@@ -287,9 +283,6 @@ public class WakeUpsystem : MonoBehaviour
     {
         StopAllCoroutines();
 
-        camaraJugador.localPosition = new Vector3(0f, 1.2f, 0f);
-        camaraJugador.localRotation = Quaternion.Euler(0f, 0f, 0f);
-
         if (fuenteAudio != null && fuenteAudio.isPlaying)
             fuenteAudio.Stop();
 
@@ -302,18 +295,12 @@ public class WakeUpsystem : MonoBehaviour
         if (textoSaltarIntro != null)
             textoSaltarIntro.gameObject.SetActive(false);
 
-        if (canvasUIPrincipal != null)
-            canvasUIPrincipal.SetActive(true);
-
-        if (canvasUIExtra != null)
-            canvasUIExtra.SetActive(true);
-
-        if (scriptMovimientoJugador != null)
-            scriptMovimientoJugador.enabled = true;
-
         if (canvasFade != null)
             canvasFade.alpha = 0f;
 
-        gameObject.SetActive(false);
+        haDespertado = true;
+        listoParaDespertar = false;
+
+        StartCoroutine(SecuenciaDespertar());
     }
 }
