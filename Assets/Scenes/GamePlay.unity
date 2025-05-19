@@ -40890,15 +40890,113 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6392737600347322976, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -5936796378385894085, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -5885740838395581129, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -5776406147481473781, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -4968025259167286075, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -4469986265139582788, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -4431046254578281429, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -3581516348230907653, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: -781796532284384729, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
+    - target: {fileID: 267602514164109820, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
     - target: {fileID: 919132149155446097, guid: f73113699db14b2438b4bbf93b983585, type: 3}
       propertyPath: m_Name
       value: Mechero OBJ
       objectReference: {fileID: 0}
+    - target: {fileID: 6730784976410096031, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6908f91db310bf74cb75afd8dd23eec7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1163224821}
   m_SourcePrefab: {fileID: 100100000, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+--- !u!1 &1163224820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f73113699db14b2438b4bbf93b983585, type: 3}
+  m_PrefabInstance: {fileID: 1163224819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1163224821
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163224820}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1163310365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 64580fd0b48a266469ed778b57333348, type: 3}
