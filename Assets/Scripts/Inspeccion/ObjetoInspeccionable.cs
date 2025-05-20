@@ -6,11 +6,14 @@ public class ObjetoInspeccionable : MonoBehaviour
     public string nombreObjeto;
 
     [TextArea(3, 10)]
-    public string descripcion; 
+    public string descripcion;
 
     [TextArea(5, 20)]
-    public string textoLecturaCompleta; 
+    public string textoLecturaCompleta;
 
-    [Header("Modelo")]
+    [Header("Modelo (ya no se usa)")]
     public GameObject prefabModelo;
+
+    [Header("Vista previa del objeto")]
+    public Sprite imagenObjeto;
 }

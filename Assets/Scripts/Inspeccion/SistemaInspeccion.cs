@@ -25,8 +25,10 @@ public class SistemaInspeccion : MonoBehaviour
     public Button botonAnterior;
     public Button botonSiguiente;
 
-    [Header("Visualización del objeto")]
-    public Transform puntoVisual;
+    [Header("Visualización de imagen")]
+    public Image imagenObjetoUI;
+
+    [Header("Luz de inspección")]
     public Light luzInspeccion;
 
     [Header("Control del jugador")]
@@ -34,7 +36,6 @@ public class SistemaInspeccion : MonoBehaviour
     public MonoBehaviour scriptCamaraJugador;
 
     private ObjetoInspeccionable objetoActual;
-    private GameObject modeloInstanciado;
     private bool inspeccionando = false;
 
     private List<string> paginas = new List<string>();
@@ -87,31 +88,12 @@ public class SistemaInspeccion : MonoBehaviour
         if (luzInspeccion != null)
             luzInspeccion.enabled = true;
 
-       if (objetoActual.prefabModelo != null && puntoVisual != null)
-{
-    modeloInstanciado = Instantiate(objetoActual.prefabModelo, puntoVisual.position, Quaternion.identity, puntoVisual);
-    Debug.Log("📦 Modelo instanciado: " + modeloInstanciado.name);
-
-    modeloInstanciado.AddComponent<RotadorDeObjeto>();
-    modeloInstanciado.transform.localPosition = Vector3.zero;
-    modeloInstanciado.transform.localRotation = Quaternion.identity;
-
-    Renderer rend = modeloInstanciado.GetComponentInChildren<Renderer>();
-    if (rend != null)
-    {
-        Vector3 size = rend.bounds.size;
-        float maxDimension = Mathf.Max(size.x, size.y, size.z);
-        float scaleFactor = 0.5f / maxDimension;
-        modeloInstanciado.transform.localScale = Vector3.one * scaleFactor;
-        Debug.Log($"✅ Escala aplicada: {modeloInstanciado.transform.localScale} basada en {rend.name}");
-    }
-    else
-    {
-        Debug.LogWarning("⚠️ El modelo instanciado no tiene Renderer. Usando escala por defecto.");
-        modeloInstanciado.transform.localScale = Vector3.one * 0.3f;
-    }
-}
-
+        // Mostrar imagen en vez de modelo
+        if (objetoActual.imagenObjeto != null && imagenObjetoUI != null)
+        {
+            imagenObjetoUI.sprite = objetoActual.imagenObjeto;
+            imagenObjetoUI.gameObject.SetActive(true);
+        }
 
         PausarJuego(true);
     }
@@ -184,8 +166,11 @@ public class SistemaInspeccion : MonoBehaviour
         if (textoDescripcion != null)
             textoDescripcion.gameObject.SetActive(true);
 
-        if (modeloInstanciado != null)
-            Destroy(modeloInstanciado);
+        if (imagenObjetoUI != null)
+        {
+            imagenObjetoUI.sprite = null;
+            imagenObjetoUI.gameObject.SetActive(false);
+        }
 
         if (luzInspeccion != null)
             luzInspeccion.enabled = false;
