@@ -13,7 +13,7 @@ public class WakeUpsystem : MonoBehaviour
     public CanvasGroup canvasFade;
     public GameObject canvasUIPrincipal;
     public GameObject canvasUIExtra;
-    public MonoBehaviour scriptMovimientoJugador;
+    public PlayerMovement scriptMovimientoJugador;
 
     [Header("Texto y Subtítulos")]
     public TMP_Text textoIndicacion;
@@ -45,8 +45,7 @@ public class WakeUpsystem : MonoBehaviour
         if (canvasUIExtra != null)
             canvasUIExtra.SetActive(false);
 
-        if (scriptMovimientoJugador != null)
-            scriptMovimientoJugador.enabled = false;
+        BloquearJugador(false); // Desactivamos movimiento/cámara
 
         if (textoSaltarIntro != null)
         {
@@ -236,8 +235,7 @@ public class WakeUpsystem : MonoBehaviour
         if (canvasUIExtra != null)
             canvasUIExtra.SetActive(true);
 
-        if (scriptMovimientoJugador != null)
-            scriptMovimientoJugador.enabled = true;
+        BloquearJugador(true); 
 
         StartCoroutine(MareoDespuesDespertar());
         gameObject.SetActive(false);
@@ -302,5 +300,22 @@ public class WakeUpsystem : MonoBehaviour
         listoParaDespertar = false;
 
         StartCoroutine(SecuenciaDespertar());
+    }
+
+    void BloquearJugador(bool activo)
+    {
+        if (scriptMovimientoJugador != null)
+            scriptMovimientoJugador.controlesActivos = activo;
+
+        if (activo)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 }
