@@ -1,31 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUIManager : MonoBehaviour
 {
-   public GameObject itemSlotPrefab;
+    [SerializeField] private Transform slotParent;       
+    [SerializeField] private GameObject slotPrefab;      
+
+    private void Awake()
+    {
+        InventorySystem.Instance.onInventoryChangedEventCallback += RefreshUI;
+    }
+
+    private void OnDestroy()
+    {
+        InventorySystem.Instance.onInventoryChangedEventCallback -= RefreshUI;
+    }
+
     private void Start()
     {
-        InventorySystem.Instance.onInventoryChangedEventCallback += OnUpdateInventory;
+        RefreshUI();
     }
 
-    public void OnUpdateInventory(){
-        foreach (Transform t in transform){
-            Destroy(t.transform.gameObject);
-
+    public void RefreshUI()
+    {
+        foreach (Transform child in slotParent)
+        {
+            Destroy(child.gameObject);
         }
-        DrawInventory();
-    }
 
-    public void DrawInventory(){
-        foreach (InventoryItem item in InventorySystem.Instance.inventory){
-            AddInventorySlot(item);
+        foreach (var item in InventorySystem.Instance.inventory)
+        {
+            GameObject slot = Instantiate(slotPrefab, slotParent);
+            slot.GetComponent<ItemSlot>().Set(item);
         }
-    }
-    public void AddInventorySlot(InventoryItem item){
-        GameObject obj = Instantiate(itemSlotPrefab);
-        obj.transform.SetParent(transform, false);
-
-        ItemSlot slot= obj.GetComponent<ItemSlot>();
-        slot.Set(item);
     }
 }
