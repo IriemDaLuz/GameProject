@@ -88,7 +88,6 @@ public class SistemaInspeccion : MonoBehaviour
         if (luzInspeccion != null)
             luzInspeccion.enabled = true;
 
-        // Mostrar imagen en vez de modelo
         if (objetoActual.imagenObjeto != null && imagenObjetoUI != null)
         {
             imagenObjetoUI.sprite = objetoActual.imagenObjeto;

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-public GameObject objectToActivateOnPickup;
-
     public InventoryItemDAta itemDAta;
 
     public void Pickup()
@@ -11,9 +9,12 @@ public GameObject objectToActivateOnPickup;
     InventorySystem.Instance.Add(itemDAta);
     PickupUIManager.Instance.HideText();
 
-    if (objectToActivateOnPickup != null)
+    if (!HandSystem.Instance.IsInHand(itemDAta.id))
     {
-        objectToActivateOnPickup.SetActive(true);
+        if (HandSystem.Instance.rightHandItem == null)
+            HandSystem.Instance.AssignToRightHand(itemDAta);
+        else if (HandSystem.Instance.leftHandItem == null)
+            HandSystem.Instance.AssignToLeftHand(itemDAta);
     }
 
     Destroy(gameObject);

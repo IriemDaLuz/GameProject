@@ -11,13 +11,17 @@ public class MissionManager : MonoBehaviour
 
     private string currentMainMission;
     private string currentOptionalMission;
+    public bool misionElectricidadCompletada = false;
+
 
     private void Awake()
     {
-        if (Instance == null){
+        if (Instance == null)
+        {
             Instance = this;
-            }
-        else{
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
@@ -58,6 +62,13 @@ public class MissionManager : MonoBehaviour
                 optionalMissionUI.text = "Optional: " + currentOptionalMission;
                 }
         }
+    }
+
+    public void CompletarMisionElectricidad()
+    {
+        Debug.Log("Electricidad restaurada.");
+        misionElectricidadCompletada = true;
+        SetMainMission("Encuentra una salida del pasillo.");
     }
 
     public string GetCurrentMainMission()
