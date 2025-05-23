@@ -9,10 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed = 1f;
     public float gravity = -9.81f;
 
-    [Header("Agacharse")]
-    public float normalHeight = 2f;
-    public float crouchHeight = 1f;
-    public float crouchCameraOffset = -0.5f;
 
     [Header("Control")]
     public Transform playerCamera;
@@ -28,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private bool isCrouching = false;
-    private Vector3 originalCameraPosition;
+    private Vector3 camPosDePie;
+    private Vector3 camPosAgachado;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        originalCameraPosition = playerCamera.localPosition;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -45,16 +41,13 @@ public class PlayerMovement : MonoBehaviour
 
         HandleMovement();
         HandleMouseLook();
-        HandleCrouch();
     }
 
     void HandleMovement()
     {
         isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
-        {
             velocity.y = -2f;
-        }
 
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
@@ -62,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
 
         float currentSpeed = walkSpeed;
-
         if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
             currentSpeed = runSpeed;
         else if (isCrouching)
@@ -85,23 +77,5 @@ public class PlayerMovement : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
-
-    void HandleCrouch()
-{
-    if (Input.GetKeyDown(KeyCode.LeftControl))
-    {
-        isCrouching = true;
-        controller.height = crouchHeight;
-        controller.center = new Vector3(0, crouchHeight / 2f, 0); 
-        playerCamera.localPosition = originalCameraPosition + new Vector3(0, crouchCameraOffset, 0);
-    }
-    else if (Input.GetKeyUp(KeyCode.LeftControl))
-    {
-        isCrouching = false;
-        controller.height = normalHeight;
-        controller.center = new Vector3(0, normalHeight / 2f, 0); 
-        playerCamera.localPosition = originalCameraPosition;
-    }
-}
 
 }

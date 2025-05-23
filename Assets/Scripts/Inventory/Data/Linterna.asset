@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd2d92cde7c1004bbece9b87fba4f31, type: 3}
   m_Name: Linterna
   m_EditorClassIdentifier: 
+  activaAlRecoger: 1
   id: flashlight
   itenName: Linterna
   itemIcon: {fileID: 21300000, guid: f2c2ac8c7eeb29642ae00802788a2624, type: 3}
   itemPrefab: {fileID: 5805254846299410813, guid: fb772f569cba8be44ada3b07480f9e5e, type: 3}
+  handRotationOffset: {x: 0, y: 90, z: 90}
+  handScale: {x: 2, y: 2, z: 2}

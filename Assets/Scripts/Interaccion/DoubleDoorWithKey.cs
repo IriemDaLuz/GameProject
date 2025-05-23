@@ -1,6 +1,7 @@
 using UnityEngine;
-
 using System.Collections;
+using TMPro;
+
 public class DoubleDoorWithKey : MonoBehaviour
 {
     public string requiredItemID = "pase_medico";
@@ -14,6 +15,11 @@ public class DoubleDoorWithKey : MonoBehaviour
     public Vector3 rotacionDerecha = new Vector3(0, -90, 0);
     public float velocidad = 2f;
 
+    [Header("UI")]
+    public TMP_Text mensajeUI;
+    public TMP_Text textoInteractuar;
+    public float duracionMensaje = 2f;
+
     private bool abierta = false;
     private bool playerCerca = false;
 
@@ -21,29 +27,38 @@ public class DoubleDoorWithKey : MonoBehaviour
     {
         if (playerCerca && Input.GetKeyDown(KeyCode.E) && !abierta)
         {
+            if (textoInteractuar != null)
+                textoInteractuar.gameObject.SetActive(false); 
+
             if (!MissionManager.Instance.misionElectricidadCompletada)
             {
-                Debug.Log("No hay electricidad.");
+                MostrarMensaje("Necesitas restablecer la electricidad.");
                 return;
             }
 
-            if (TienePaseMedico())
-            {
-                StartCoroutine(AbrirPuertas());
-                abierta = true;
-            }
-            else
-            {
-                Debug.Log("Necesitas el pase médico en la mano.");
-            }
-        }
-    }
+            var hand = HandSystem.Instance;
 
-    private bool TienePaseMedico()
-    {
-        var hand = HandSystem.Instance;
-        return (hand.leftHandItem != null && hand.leftHandItem.id == requiredItemID)
-            || (hand.rightHandItem != null && hand.rightHandItem.id == requiredItemID);
+            bool tienePase = (hand.leftHandItem != null && hand.leftHandItem.id == requiredItemID)
+                          || (hand.rightHandItem != null && hand.rightHandItem.id == requiredItemID);
+
+            if (!tienePase)
+            {
+                MostrarMensaje("Necesitas el pase médico.");
+                return;
+            }
+
+            bool paseAsignado = (hand.leftHandItem != null && hand.leftHandItem.id == requiredItemID)
+                             || (hand.rightHandItem != null && hand.rightHandItem.id == requiredItemID);
+
+            if (!paseAsignado)
+            {
+                MostrarMensaje("Asigna el pase médico a una mano.");
+                return;
+            }
+
+            StartCoroutine(AbrirPuertas());
+            abierta = true;
+        }
     }
 
     private IEnumerator AbrirPuertas()
@@ -67,12 +82,37 @@ public class DoubleDoorWithKey : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerCerca = true;
+            if (textoInteractuar != null && !abierta)
+                textoInteractuar.text = "Pulsa 'E' para interactuar";
+                textoInteractuar.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerCerca = false;
+            if (textoInteractuar != null)
+                textoInteractuar.gameObject.SetActive(false);
+        }
+    }
+
+    private void MostrarMensaje(string texto)
+    {
+        if (mensajeUI != null)
+        {
+            mensajeUI.text = texto;
+            CancelInvoke(nameof(LimpiarMensaje));
+            Invoke(nameof(LimpiarMensaje), duracionMensaje);
+        }
+    }
+
+    private void LimpiarMensaje()
+    {
+        if (mensajeUI != null)
+            mensajeUI.text = "";
     }
 }
