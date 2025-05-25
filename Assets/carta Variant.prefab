@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &713899834398605064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1241031821138259254, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: descripcion
+      value: "Registro Cl\xEDnico \u2013 Acceso Restringido\nPaciente: Camila Herrera."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241031821138259254, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: imagenObjeto
+      value: 
+      objectReference: {fileID: 21300000, guid: 36b6c009f208f362293fd81464ca65fe, type: 3}
+    - target: {fileID: 1241031821138259254, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: prefabModelo
+      value: 
+      objectReference: {fileID: 8844819040652643320, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+    - target: {fileID: 1241031821138259254, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: descripcionObjeto
+      value: "Registro Cl\xEDnico \u2013 Acceso Restringido\n\nNombre de la paciente:
+        Camila Herrera\nFecha de nacimiento: 11 de marzo de 1993\nEdad: 32 a\xF1os\nSexo:
+        Femenino\nNacionalidad: Espa\xF1ola\nID Paciente: #0211-94-A\n\nFecha de
+        ingreso: 16 de julio de 2024\nTipo de admisi\xF3n: Involuntaria \u2013 Orden
+        judicial tras colapso psiqui\xE1trico\nDuraci\xF3n: Indefinida (pendiente
+        de evaluaci\xF3n psicol\xF3gica avanzada)\n\nMotivo del ingreso:\nPaciente
+        ingresada tras un episodio disociativo severo posterior a un parto sin \xE9xito.
+        Seg\xFAn los informes, la paciente asegura que su hijo fue \u201Carrebatado
+        por algo desde abajo\u201D durante el alumbramiento en esta misma instituci\xF3n.
+        Testigos describen comportamientos incoherentes, autolesiones y repetidas
+        referencias a s\xEDmbolos ocultistas encontrados en la sala de partos.\n\nLa
+        paciente presenta una intensa culpa del superviviente, alucinaciones con
+        una figura oscura a la que llama \u201CLa Parca\u201D y pesadillas recurrentes
+        con tem\xE1ticas ritualistas centradas en el intercambio de vidas.\n\nDiagn\xF3stico
+        psiqui\xE1trico provisional:\n\nDuelo complicado con rasgos disociativos\n\nTrastorno
+        de estr\xE9s postraum\xE1tico (TEPT)\n\nTrastorno delirante \u2013 contenido
+        sobrenatural\n\nIdeaci\xF3n suicida persistente\n\nObservaciones del psiquiatra
+        tratante \u2013 Dr. Ignacio Serrano:\nLa paciente se niega a recibir medicaci\xF3n
+        y presenta comportamientos obsesivos relacionados con el subsuelo del hospital.
+        Afirma escuchar el llanto de su beb\xE9 tras las paredes. Dibuja c\xEDrculos
+        rituales durante las sesiones de evaluaci\xF3n.\n\nRepite constantemente:
+        \u201CUna vida debe ser entregada.\u201D\nEst\xE1 convencida de que a\xFAn
+        es posible una segunda oportunidad \u2014 si se toma la decisi\xF3n correcta.
+        Cree firmemente que el hospital guarda la clave para revertir lo ocurrido.\n\nDada
+        la peligrosidad de sus delirios y su negativa a aceptar la p\xE9rdida, se
+        recomienda aislamiento total y monitoreo constante.\n\nFirma:\nDr. Ignacio
+        Serrano\nLic. M\xE9d. 83629"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241031821138259254, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: textoLecturaCompleta
+      value: "Registro Cl\xEDnico \u2013 Acceso Restringido\n\nNombre de la paciente:
+        Camila Herrera\nFecha de nacimiento: 11 de marzo de 1993\nEdad: 32 a\xF1os\nSexo:
+        Femenino\nNacionalidad: Espa\xF1ola\nID Paciente: #0211-94-A\n\nFecha de
+        ingreso: 16 de julio de 2024\nTipo de admisi\xF3n: Involuntaria \u2013 Orden
+        judicial tras colapso psiqui\xE1trico\nDuraci\xF3n: Indefinida (pendiente
+        de evaluaci\xF3n psicol\xF3gica avanzada)\n\nMotivo del ingreso:\nPaciente
+        ingresada tras un episodio disociativo severo posterior a un parto sin \xE9xito.
+        Seg\xFAn los informes, la paciente asegura que su hijo fue \u201Carrebatado
+        por algo desde abajo\u201D durante el alumbramiento en esta misma instituci\xF3n.
+        Testigos describen comportamientos incoherentes, autolesiones y repetidas
+        referencias a s\xEDmbolos ocultistas encontrados en la sala de partos.\n\nLa
+        paciente presenta una intensa culpa del superviviente, alucinaciones con
+        una figura oscura a la que llama \u201CLa Parca\u201D y pesadillas recurrentes
+        con tem\xE1ticas ritualistas centradas en el intercambio de vidas.\n\nDiagn\xF3stico
+        psiqui\xE1trico provisional:\n\nDuelo complicado con rasgos disociativos\n\nTrastorno
+        de estr\xE9s postraum\xE1tico (TEPT)\n\nTrastorno delirante \u2013 contenido
+        sobrenatural\n\nIdeaci\xF3n suicida persistente\n\nObservaciones del psiquiatra
+        tratante \u2013 Dr. Ignacio Serrano:\nLa paciente se niega a recibir medicaci\xF3n
+        y presenta comportamientos obsesivos relacionados con el subsuelo del hospital.
+        Afirma escuchar el llanto de su beb\xE9 tras las paredes. Dibuja c\xEDrculos
+        rituales durante las sesiones de evaluaci\xF3n.\n\nRepite constantemente:
+        \u201CUna vida debe ser entregada.\u201D\nEst\xE1 convencida de que a\xFAn
+        es posible una segunda oportunidad \u2014 si se toma la decisi\xF3n correcta.
+        Cree firmemente que el hospital guarda la clave para revertir lo ocurrido.\n\nDada
+        la peligrosidad de sus delirios y su negativa a aceptar la p\xE9rdida, se
+        recomienda aislamiento total y monitoreo constante.\n\nFirma:\nDr. Ignacio
+        Serrano\nLic. M\xE9d. 83629"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241031821138259254, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: modeloParaInspeccionar
+      value: 
+      objectReference: {fileID: 8844819040652643320, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.040000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.053333327
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.063112855
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.10805426
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.99414504
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 192.406
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680543949559554685, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844819040652643320, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      propertyPath: m_Name
+      value: carta Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8844819040652643320, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7799404631049329499}
+  m_SourcePrefab: {fileID: 100100000, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+--- !u!1 &8311204081376933104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8844819040652643320, guid: fc0d597def7de744b940f8ffc2e3d822, type: 3}
+  m_PrefabInstance: {fileID: 713899834398605064}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7799404631049329499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8311204081376933104}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.000005, y: 2.2204459e-16, z: 10.000005}
+  m_Center: {x: 0, y: 0, z: 0}
