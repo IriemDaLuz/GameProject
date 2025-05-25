@@ -17,5 +17,5 @@ MonoBehaviour:
   itenName: "Pase M\xE9dico"
   itemIcon: {fileID: 21300000, guid: 3fe6656c30e8d36418142d7fe17e36d1, type: 3}
   itemPrefab: {fileID: 7009280450568793487, guid: a366786a9c1b7f348b5171f2fe1a368d, type: 3}
-  handRotationOffset: {x: 270, y: 90, z: 0}
+  handRotationOffset: {x: 270, y: 0, z: 0}
   handScale: {x: 0.003, y: 0.003, z: 0.003}

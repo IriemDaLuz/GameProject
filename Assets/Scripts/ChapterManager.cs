@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ChapterManager : MonoBehaviour
 {
+    public static event System.Action<int> OnCapituloCambiado;
+
     public static ChapterManager Instance;
 
     [Header("Capítulo actual")]
@@ -19,24 +21,27 @@ public class ChapterManager : MonoBehaviour
     }
 
     public void CambiarCapitulo(int nuevoCapitulo)
-    {
-        capituloActual = nuevoCapitulo;
+{
+    capituloActual = nuevoCapitulo;
 
-        string nombreCapitulo = ObtenerNombreCapitulo(nuevoCapitulo);
-        ChapterTitleManager.Instance?.ShowChapter("Capítulo " + nuevoCapitulo, nombreCapitulo);
+    string nombreCapitulo = ObtenerNombreCapitulo(nuevoCapitulo);
+    ChapterTitleManager.Instance?.ShowChapter("Capítulo " + nuevoCapitulo, nombreCapitulo);
 
-        MissionManager.Instance?.ActualizarMisionesPorCapitulo(nuevoCapitulo);
+    MissionManager.Instance?.ActualizarMisionesPorCapitulo(nuevoCapitulo);
 
-        Debug.Log($"Cambio al capítulo {nuevoCapitulo}: {nombreCapitulo}");
-    }
+    Debug.Log($"Cambio al capítulo {nuevoCapitulo}: {nombreCapitulo}");
 
-    private string ObtenerNombreCapitulo(int capitulo)
+    OnCapituloCambiado?.Invoke(capituloActual); 
+}
+
+
+    public string ObtenerNombreCapitulo(int capitulo)
     {
         switch (capitulo)
         {
             case 1: return "El Despertar";
-            case 2: return "Sombras en los Pasillos";
-            case 3: return "La Persecución Interna";
+            case 2: return "La Verdad";
+            case 3: return "Culpa";
             case 4: return "El Juicio Final";
             default: return "Capítulo Desconocido";
         }
