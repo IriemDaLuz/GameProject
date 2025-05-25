@@ -6,8 +6,8 @@ public class MissionManager : MonoBehaviour
     public static MissionManager Instance;
 
     [Header("Mission UI Elements")]
-    public TMP_Text missionTextUI;   
-    public TMP_Text optionalMissionUI;  
+    public TMP_Text missionTextUI;
+    public TMP_Text optionalMissionUI;
 
     private string currentMainMission;
     private string currentOptionalMission;
@@ -46,7 +46,8 @@ public class MissionManager : MonoBehaviour
 
     private void UpdateMainMissionUI()
     {
-        if (missionTextUI != null){
+        if (missionTextUI != null)
+        {
             missionTextUI.text = currentMainMission;
         }
     }
@@ -55,12 +56,14 @@ public class MissionManager : MonoBehaviour
     {
         if (optionalMissionUI != null)
         {
-            if (string.IsNullOrEmpty(currentOptionalMission)){
-                optionalMissionUI.text = ""; 
-                }
-            else {
+            if (string.IsNullOrEmpty(currentOptionalMission))
+            {
+                optionalMissionUI.text = "";
+            }
+            else
+            {
                 optionalMissionUI.text = "Optional: " + currentOptionalMission;
-                }
+            }
         }
     }
 
@@ -80,4 +83,35 @@ public class MissionManager : MonoBehaviour
     {
         return currentOptionalMission;
     }
+    public void ActualizarMisionesPorCapitulo(int capitulo)
+{
+    switch (capitulo)
+    {
+        case 1:
+            SetMainMission("Restablece la electricidad.");
+            SetOptionalMission("");
+            break;
+
+        case 2:
+            SetMainMission("Investiga el pasillo y encuentra una vía de escape.");
+            SetOptionalMission("Explora la sala de rayos X.");
+            break;
+
+        case 3:
+            SetMainMission("Escapa de la sombra que te persigue.");
+            SetOptionalMission("");
+            break;
+
+        case 4:
+            SetMainMission("Decide: tu vida o la de tu hijo.");
+            SetOptionalMission("Explora todos los documentos antes de decidir.");
+            break;
+
+        default:
+            SetMainMission("Sin misión activa.");
+            SetOptionalMission("");
+            break;
+    }
+}
+
 }

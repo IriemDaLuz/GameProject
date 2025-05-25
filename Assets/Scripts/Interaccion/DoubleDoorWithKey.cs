@@ -20,6 +20,10 @@ public class DoubleDoorWithKey : MonoBehaviour
     public TMP_Text textoInteractuar;
     public float duracionMensaje = 2f;
 
+    [Header("Sonido")]
+    public AudioSource audioFuente;
+    public AudioClip sonidoPuerta;
+
     private bool abierta = false;
     private bool playerCerca = false;
 
@@ -63,6 +67,11 @@ public class DoubleDoorWithKey : MonoBehaviour
 
     private IEnumerator AbrirPuertas()
     {
+        if (audioFuente != null && sonidoPuerta != null)
+        {
+            audioFuente.PlayOneShot(sonidoPuerta);
+        }
+
         Quaternion inicioIzq = puertaIzquierda.localRotation;
         Quaternion destinoIzq = Quaternion.Euler(rotacionIzquierda);
 
@@ -77,6 +86,11 @@ public class DoubleDoorWithKey : MonoBehaviour
             puertaDerecha.localRotation = Quaternion.Slerp(inicioDer, destinoDer, t);
             yield return null;
         }
+
+        if (ChapterManager.Instance != null)
+        {
+            ChapterManager.Instance.CambiarCapitulo(2);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,8 +99,10 @@ public class DoubleDoorWithKey : MonoBehaviour
         {
             playerCerca = true;
             if (textoInteractuar != null && !abierta)
+            {
                 textoInteractuar.text = "Pulsa 'E' para interactuar";
                 textoInteractuar.gameObject.SetActive(true);
+            }
         }
     }
 

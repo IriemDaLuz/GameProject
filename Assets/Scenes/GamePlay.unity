@@ -6272,7 +6272,7 @@ GameObject:
   - component: {fileID: 139268458}
   - component: {fileID: 139268460}
   - component: {fileID: 139268461}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6359,7 +6359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &139268461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12946,7 +12946,7 @@ GameObject:
   - component: {fileID: 329859519}
   - component: {fileID: 329859521}
   - component: {fileID: 329859522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13033,7 +13033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &329859522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13726,7 +13726,7 @@ GameObject:
   - component: {fileID: 359921248}
   - component: {fileID: 359921250}
   - component: {fileID: 359921251}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13813,7 +13813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &359921251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15577,7 +15577,7 @@ GameObject:
   - component: {fileID: 407982161}
   - component: {fileID: 407982163}
   - component: {fileID: 407982164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15664,7 +15664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &407982164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16368,7 +16368,7 @@ GameObject:
   - component: {fileID: 434279899}
   - component: {fileID: 434279901}
   - component: {fileID: 434279902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16455,7 +16455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &434279902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24993,7 +24993,7 @@ GameObject:
   - component: {fileID: 681749931}
   - component: {fileID: 681749933}
   - component: {fileID: 681749934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25080,7 +25080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &681749934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26063,7 +26063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &711888689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26794,7 +26794,7 @@ GameObject:
   - component: {fileID: 734980502}
   - component: {fileID: 734980504}
   - component: {fileID: 734980505}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26881,7 +26881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &734980505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32527,7 +32527,7 @@ GameObject:
   - component: {fileID: 893336965}
   - component: {fileID: 893336967}
   - component: {fileID: 893336968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32614,7 +32614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &893336968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34696,7 +34696,7 @@ GameObject:
   - component: {fileID: 961187396}
   - component: {fileID: 961187398}
   - component: {fileID: 961187399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34783,7 +34783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &961187399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36409,7 +36409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.673
+      value: 2.6820564
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36417,23 +36417,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.829
+      value: 7.8326864
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4481574
+      value: 0.40324125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.44815743
+      value: -0.40324128
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5469507
+      value: -0.5808585
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5469506
+      value: -0.58085835
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -36445,7 +36445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -101.339
+      value: -110.462
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c06f912e2acd7a443b0cf4597f052754, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -45644,7 +45644,7 @@ GameObject:
   - component: {fileID: 1227695272}
   - component: {fileID: 1227695274}
   - component: {fileID: 1227695275}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45731,7 +45731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &1227695275
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51779,7 +51779,7 @@ GameObject:
   - component: {fileID: 1394192066}
   - component: {fileID: 1394192068}
   - component: {fileID: 1394192069}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51866,7 +51866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &1394192069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55288,7 +55288,7 @@ GameObject:
   - component: {fileID: 1500250712}
   - component: {fileID: 1500250714}
   - component: {fileID: 1500250715}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vela_Mesh (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55375,7 +55375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d785299c6fb1343b363cd9a729e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDAta: {fileID: 0}
+  itemDAta: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
 --- !u!65 &1500250715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58448,7 +58448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openDistance: 0.3
   openSpeed: 1
-  moveDirection: {x: 0, y: 0, z: -0.5}
+  moveDirection: {x: 0, y: 0, z: -0.6}
 --- !u!1001 &1577672563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79134,6 +79134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: vela_Mesh (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 831412765715975042, guid: 55bf3826257cca5448e2490362ebca92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319978981624844700, guid: 55bf3826257cca5448e2490362ebca92, type: 3}
+      propertyPath: itemDAta
+      value: 
+      objectReference: {fileID: 11400000, guid: be5816ff38e9c914f8885a7e98deb473, type: 2}
     - target: {fileID: 8178991867482826762, guid: 55bf3826257cca5448e2490362ebca92, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.000036
