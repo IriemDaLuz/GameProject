@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed = 1f;
     public float gravity = -9.81f;
 
-
     [Header("Control")]
     public Transform playerCamera;
     public float mouseSensitivity = 1.5f;
@@ -37,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!controlesActivos) return;
+        if (!controlesActivos || !controller.enabled) return;
 
         HandleMovement();
         HandleMouseLook();
@@ -77,5 +76,4 @@ public class PlayerMovement : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
-
 }

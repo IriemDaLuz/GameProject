@@ -42,6 +42,5 @@ public class PausaBotones : MonoBehaviour
     public void MostrarAyuda()
     {
         Debug.Log("Mostrar panel de ayuda...");
-        // Activa un panel de ayuda o instrucciones si lo tienes
     }
 }

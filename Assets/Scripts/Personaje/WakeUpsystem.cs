@@ -33,7 +33,7 @@ public class WakeUpsystem : MonoBehaviour
 
     void Start()
     {
-        posicionInicialCamara = camaraJugador.localPosition;
+posicionInicialCamara = camaraJugador.localPosition ;
         rotacionInicialCamara = camaraJugador.localRotation;
 
         textoIndicacion.text = "";
@@ -45,8 +45,7 @@ public class WakeUpsystem : MonoBehaviour
         if (canvasUIExtra != null)
             canvasUIExtra.SetActive(false);
 
-        BloquearJugador(false); // Desactivamos movimiento/cámara
-
+        BloquearJugador(false); 
         if (textoSaltarIntro != null)
         {
             textoSaltarIntro.gameObject.SetActive(true);

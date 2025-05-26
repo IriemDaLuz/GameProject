@@ -1,6 +1,6 @@
 using UnityEngine;
-using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TriggerCapitulo3 : MonoBehaviour
 {
@@ -12,18 +12,21 @@ public class TriggerCapitulo3 : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioFuente;
     public AudioClip sonidoMom;
+    public AudioClip sonidoGolpe;
 
-    [Header("Luz de la sala a apagar")]
-    public GameObject luzSala;
-
-    [Header("Sombra simbólica")]
-    public GameObject sombraVisual;
-
-    [Header("Texto de interacción")]
-    public TMP_Text textoInteractuar;
+    [Header("Luz de la sala")]
+    public Light luzSala;
 
     [Header("UIs a desactivar")]
     public GameObject[] otrasUIs;
+
+    [Header("Jugador")]
+    public GameObject jugador;
+    public Transform posicionMorgue;          // ⬅️ Aquí irá el jugador al "despertar"
+    public Transform camaraJugador;
+
+    [Header("Desmayo visual")]
+    public CanvasGroup fadeCanvas;
 
     private bool jugadorCerca = false;
     private bool secuenciaIniciada = false;
@@ -32,22 +35,20 @@ public class TriggerCapitulo3 : MonoBehaviour
     {
         if (jugadorCerca && Input.GetKeyDown(KeyCode.E) && !secuenciaIniciada)
         {
-            StartCoroutine(SecuenciaCapitulo3());
-            if (textoInteractuar != null)
-                textoInteractuar.gameObject.SetActive(false);
+            StartCoroutine(SecuenciaDesmayoEnMorgue());
         }
     }
 
-    private IEnumerator SecuenciaCapitulo3()
+    private IEnumerator SecuenciaDesmayoEnMorgue()
     {
         secuenciaIniciada = true;
 
         foreach (var ui in otrasUIs)
             if (ui != null) ui.SetActive(false);
 
+        // Zoom inicial
         Vector3 posInicial = camara.transform.position;
         Quaternion rotInicial = camara.transform.rotation;
-
         float t = 0f;
         while (t < 1f)
         {
@@ -57,30 +58,86 @@ public class TriggerCapitulo3 : MonoBehaviour
             yield return null;
         }
 
-        if (audioFuente != null && sonidoMom != null)
+        // Sonido ambiente
+        if (audioFuente && sonidoMom)
             audioFuente.PlayOneShot(sonidoMom);
 
-        yield return new WaitForSeconds(2f);
-        
+        yield return new WaitForSeconds(1.2f);
+
         if (luzSala != null)
-            luzSala.SetActive(false);
+            luzSala.enabled = false;
 
-        if (sombraVisual != null)
-            sombraVisual.SetActive(true);
+        // Sonido de golpe
+        if (audioFuente && sonidoGolpe)
+            audioFuente.PlayOneShot(sonidoGolpe);
 
-        yield return new WaitForSeconds(1.5f);
+        // Cámara "cae" con animación simple
+        yield return StartCoroutine(AnimacionDesmayoCamara());
 
-        if (ChapterManager.Instance != null)
-            ChapterManager.Instance.CambiarCapitulo(3);
+        // Fade a negro (ojos cerrándose)
+        yield return StartCoroutine(FadeNegro(true));
 
-        yield return new WaitForSeconds(4f);
+// Teletransportar al jugador a la morgue
+Debug.Log("Teletransportando a la morgue...");
+CharacterController cc = jugador.GetComponent<CharacterController>();
+if (cc != null) cc.enabled = false;
 
-        float z = 0f;
-        while (z < 1f)
+jugador.transform.position = posicionMorgue.position;
+jugador.transform.rotation = posicionMorgue.rotation;
+
+if (cc != null) cc.enabled = true;
+
+// Resetear cámara
+camaraJugador.localPosition = Vector3.zero;
+camaraJugador.localRotation = Quaternion.identity;
+
+
+
+        // Espera un momento en negro
+        yield return new WaitForSeconds(1.2f);
+
+        // Fade in (despertar)
+        yield return StartCoroutine(FadeNegro(false));
+    }
+
+    private IEnumerator AnimacionDesmayoCamara()
+    {
+        if (camaraJugador == null) yield break;
+
+        Vector3 posInicial = camaraJugador.localPosition;
+        Quaternion rotInicial = camaraJugador.localRotation;
+
+        Vector3 posFinal = posInicial + new Vector3(0f, -0.5f, 0.2f);
+        Quaternion rotFinal = Quaternion.Euler(70f, 0f, 0f);
+
+        float duracion = 1.2f;
+        float tiempo = 0f;
+
+        while (tiempo < duracion)
         {
-            z += Time.deltaTime * velocidadZoom;
-            camara.transform.position = Vector3.Lerp(puntoZoom.position, posInicial, z);
-            camara.transform.rotation = Quaternion.Slerp(puntoZoom.rotation, rotInicial, z);
+            tiempo += Time.deltaTime;
+            float t = tiempo / duracion;
+
+            camaraJugador.localPosition = Vector3.Lerp(posInicial, posFinal, t);
+            camaraJugador.localRotation = Quaternion.Slerp(rotInicial, rotFinal, t);
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeNegro(bool fadeIn)
+    {
+        if (fadeCanvas == null) yield break;
+
+        float duracion = 1f;
+        float tiempo = 0f;
+        float inicio = fadeCanvas.alpha;
+        float destino = fadeIn ? 1f : 0f;
+
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(inicio, destino, tiempo / duracion);
             yield return null;
         }
     }
@@ -88,23 +145,12 @@ public class TriggerCapitulo3 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             jugadorCerca = true;
-            if (textoInteractuar != null && !secuenciaIniciada)
-            {
-                textoInteractuar.text = "Pulsa [E] para asomarte";
-                textoInteractuar.gameObject.SetActive(true);
-            }
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             jugadorCerca = false;
-            if (textoInteractuar != null)
-                textoInteractuar.gameObject.SetActive(false);
-        }
     }
 }
