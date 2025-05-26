@@ -68,22 +68,17 @@ public class FinalDecisionManager : MonoBehaviour
         // Fade in desde negro (si está negro)
         if (fadeCanvas) fadeCanvas.alpha = 1f;
         yield return StartCoroutine(Fade(0f));
-        // Activa el objeto Canvas si estaba desactivado
-canvasUI.gameObject.SetActive(true);
-
-// Luego lo hace visible
-canvasUI.alpha = 1f;
-textoParca.text = "¿Tantas ansias por descubrir la verdad?";
-
+        
 
         // Aparece la parca
         if (parca) parca.SetActive(true);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         // Mostrar primer mensaje
+        canvasUI.gameObject.SetActive(true); 
         textoParca.text = "¿Tantas ansias por descubrir la verdad?";
-        canvasUI.alpha = 1f;
+
 
         yield return new WaitForSeconds(3f);
 
